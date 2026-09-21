@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { pollutionControlContent, siteImages } from "../data/content";
 import { 
   FileCheck2, 
@@ -86,9 +87,14 @@ export default function PollutionControl() {
               </div>
 
               {/* Action Trigger */}
-              <div className="px-6 py-4 bg-slate-50 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-primary">
-                <span>Inquire for {stage.code} Filing</span>
-                <ChevronRight className="w-4 h-4 text-accent group-hover:translate-x-1 transition-transform" />
+              <div className="px-6 py-4 bg-slate-50 border-t border-slate-100">
+                <Link
+                  to={`/book-consultation?service=pcb`}
+                  className="w-full inline-flex items-center justify-between text-xs font-bold text-primary hover:text-accent transition-colors"
+                >
+                  <span>Inquire for {stage.code} Filing</span>
+                  <ChevronRight className="w-4 h-4 text-accent group-hover:translate-x-1 transition-transform" />
+                </Link>
               </div>
             </div>
           ))}
@@ -109,13 +115,13 @@ export default function PollutionControl() {
                 Facing technical scrutiny, non-compliance notices, or hazardous waste authorization hurdles? Our senior environmental advocates and chartered engineers draft authoritative compliance replies, present site mitigation data, and resolve notices without shutdown disruptions.
               </p>
               <div className="pt-2 flex flex-wrap items-center gap-4">
-                <a
-                  href="#callback-form"
+                <Link
+                  to="/book-consultation?service=pcb"
                   className="inline-flex items-center space-x-2 bg-accent hover:bg-accent-hover text-slate-950 text-sm font-bold px-6 py-3.5 rounded-xl shadow-soft-md transition-all"
                 >
                   <span>Request Urgent PCB Consultation</span>
                   <ArrowRight className="w-4 h-4" />
-                </a>
+                </Link>
                 <div className="text-xs text-slate-400 flex items-center space-x-1.5">
                   <Clock className="w-4 h-4 text-emerald-400" />
                   <span>Immediate Case Review Within 2 Hours</span>

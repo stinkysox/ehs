@@ -12,6 +12,7 @@ import LabTesting from "./pages/LabTesting";
 import PollutionControl from "./pages/PollutionControl";
 import FireProtection from "./pages/FireProtection";
 import WaterEngineering from "./pages/WaterEngineering";
+import BookConsultation from "./pages/BookConsultation";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -31,6 +32,7 @@ function AnimatedRoutes() {
         <Route path="/pcb-compliance" element={<PollutionControl />} />
         <Route path="/fire-protection" element={<FireProtection />} />
         <Route path="/water-engineering" element={<WaterEngineering />} />
+        <Route path="/book-consultation" element={<BookConsultation />} />
       </Routes>
     </AnimatePresence>
   );

@@ -68,15 +68,14 @@ export default function Hero() {
 
         {/* Actions */}
         <motion.div variants={textVariants} className="flex flex-col sm:flex-row items-stretch sm:items-center space-y-4 sm:space-y-0 sm:space-x-5 mb-12">
-          <a
-            href="#callback-form"
-            onClick={handleScrollToForm}
+          <Link
+            to="/book-consultation"
             className="group relative inline-flex items-center justify-center space-x-3 bg-accent hover:bg-accent-hover text-slate-950 text-base font-bold px-8 py-4 rounded-xl transition-all duration-300 overflow-hidden"
           >
             <span className="relative z-10">{heroContent.primaryCtaText}</span>
             <ArrowRight className="w-5 h-5 text-slate-950 relative z-10 group-hover:translate-x-1 transition-transform" />
             <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
-          </a>
+          </Link>
 
           <Link
             to="/lab-testing"

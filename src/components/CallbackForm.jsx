@@ -15,6 +15,14 @@ import {
   Sparkles
 } from "lucide-react";
 
+function WhatsAppIcon({ className = "w-5 h-5" }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" className={className}>
+      <path d="M17.472 14.382c-.301-.15-1.78-.878-2.056-.978-.276-.1-.476-.15-.677.15-.2.301-.776.978-.952 1.178-.176.2-.351.226-.652.075-.301-.15-1.272-.469-2.423-1.496-.895-.798-1.5-1.784-1.676-2.085-.176-.301-.019-.464.132-.614.136-.135.301-.351.452-.527.15-.176.2-.301.301-.501.1-.2.05-.376-.025-.526-.075-.15-.677-1.63-.928-2.232-.244-.586-.492-.507-.677-.516-.176-.008-.376-.01-.577-.01-.2 0-.526.075-.802.376-.276.301-1.053 1.028-1.053 2.507 0 1.479 1.078 2.908 1.229 3.109.15.2 2.122 3.24 5.141 4.544.718.31 1.279.496 1.716.635.722.23 1.38.197 1.9.12.58-.087 1.78-.728 2.03-1.43.25-.702.25-1.303.175-1.43-.075-.126-.275-.201-.576-.351zm-5.419 7.424h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+    </svg>
+  );
+}
+
 export default function CallbackForm() {
   const [formData, setFormData] = useState({
     name: "",
@@ -28,6 +36,7 @@ export default function CallbackForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [submittedData, setSubmittedData] = useState(null);
+  const [waLink, setWaLink] = useState("");
 
   const validateForm = () => {
     const newErrors = {};
@@ -92,15 +101,37 @@ export default function CallbackForm() {
 
     setIsSubmitting(true);
 
-    /* ==========================================================================
-       API INTEGRATION HOOK:
-       Connect directly to your backend or CRM API endpoint:
-       ========================================================================== */
+    const servicesList = formData.selectedServices
+      .map((id) => callbackFormContent.serviceOptions.find((opt) => opt.id === id)?.label || id)
+      .join(", ");
+
+    const waLines = [
+      "🚨 *NEW QUICK CALLBACK INQUIRY*",
+      "━━━━━━━━━━━━━━━━━━━━━━",
+      `👤 *Client Name:* ${formData.name}`,
+      `🏢 *Company / Plant:* ${formData.company}`,
+      `📞 *Phone Number:* ${formData.phone}`,
+      `🛠️ *Services Needed:* ${servicesList}`,
+      formData.notes ? `📝 *Requirements:* ${formData.notes}` : null,
+      "━━━━━━━━━━━━━━━━━━━━━━",
+      "_Lead sent via EHS PRO SERVICES Website_"
+    ].filter(Boolean).join("\n");
+
+    const waNumber = "919618004530";
+    const waUrl = `https://wa.me/${waNumber}?text=${encodeURIComponent(waLines)}`;
+    setWaLink(waUrl);
+
+    try {
+      window.open(waUrl, "_blank", "noopener,noreferrer");
+    } catch (err) {
+      console.warn("Popup blocked, fallback provided", err);
+    }
+
     setTimeout(() => {
       setIsSubmitting(false);
       setIsSuccess(true);
-      setSubmittedData({ ...formData });
-    }, 700);
+      setSubmittedData({ ...formData, servicesList });
+    }, 400);
   };
 
   const handleReset = () => {
@@ -113,6 +144,7 @@ export default function CallbackForm() {
       notes: "",
     });
     setErrors({});
+    setWaLink("");
   };
 
   return (
@@ -157,13 +189,34 @@ export default function CallbackForm() {
               </div>
               <div className="max-w-lg mx-auto space-y-2">
                 <h3 className="text-2xl font-heading font-extrabold text-slate-900">
-                  {callbackFormContent.successHeading}
+                  Lead Forwarded to WhatsApp!
                 </h3>
                 <p className="text-sm text-slate-600 leading-relaxed">
                   Thank you, <strong className="text-slate-900">{submittedData?.name}</strong> from{" "}
-                  <strong className="text-slate-900">{submittedData?.company}</strong>. Our Senior Compliance Engineer will review your plant profile and call you on{" "}
-                  <strong className="text-primary font-bold">{submittedData?.phone}</strong> within 30 minutes.
+                  <strong className="text-slate-900">{submittedData?.company}</strong>. Your callback request has been compiled and routed directly to our Senior Engineer on WhatsApp at{" "}
+                  <strong className="text-emerald-700 font-bold">+91 96180 04530</strong>.
                 </p>
+              </div>
+
+              {/* WhatsApp Lead Dispatch Card */}
+              <div className="max-w-xl mx-auto bg-emerald-50/90 border border-emerald-200/90 rounded-2xl p-5 text-left shadow-sm">
+                <div className="flex items-center gap-2 text-emerald-900 font-bold text-sm mb-1.5">
+                  <WhatsAppIcon className="w-5 h-5 text-emerald-600 flex-shrink-0" />
+                  <span>WhatsApp Lead Dispatch</span>
+                </div>
+                <p className="text-xs text-emerald-800 leading-relaxed mb-3.5">
+                  Your lead inquiry is prepared for <strong>+91 96180 04530</strong>. If WhatsApp didn't launch automatically on your browser or device, tap below:
+                </p>
+                <a
+                  href={waLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2.5 w-full bg-[#25D366] hover:bg-[#20bd5a] active:scale-[0.99] text-white font-bold text-sm py-3.5 px-5 rounded-xl shadow-md transition-all duration-200"
+                >
+                  <WhatsAppIcon className="w-5 h-5" />
+                  <span>Open WhatsApp Chat (+91 96180 04530)</span>
+                  <ArrowRight className="w-4 h-4" />
+                </a>
               </div>
 
               {/* Summary of Selected Services */}
@@ -353,21 +406,29 @@ export default function CallbackForm() {
               <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-4">
                 <p className="text-[11px] text-slate-500 flex items-center space-x-2 order-2 sm:order-1">
                   <ShieldAlert className="w-4 h-4 text-emerald-600 flex-shrink-0" />
-                  <span>{callbackFormContent.privacyNote}</span>
+                  <span>Lead routed directly to +91 96180 04530 · NDA protected</span>
                 </p>
 
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full sm:w-auto inline-flex items-center justify-center space-x-2.5 bg-accent hover:bg-accent-hover text-slate-950 text-sm font-bold px-9 py-3.5 rounded-xl shadow-soft-md hover:shadow-accent-glow transition-all duration-200 transform hover:-translate-y-0.5 disabled:opacity-75 disabled:cursor-not-allowed order-1 sm:order-2"
+                  className="w-full sm:w-auto inline-flex items-center justify-center space-x-2.5 bg-accent hover:bg-accent-hover text-slate-950 text-sm font-bold px-8 py-3.5 rounded-xl shadow-soft-md hover:shadow-accent-glow transition-all duration-200 transform hover:-translate-y-0.5 disabled:opacity-75 disabled:cursor-not-allowed order-1 sm:order-2"
                 >
-                  <PhoneCall className="w-4 h-4" />
-                  <span>
-                    {isSubmitting
-                      ? callbackFormContent.submittingText
-                      : callbackFormContent.submitButtonText}
-                  </span>
-                  {!isSubmitting && <ArrowRight className="w-4 h-4" />}
+                  {isSubmitting ? (
+                    <>
+                      <svg className="w-4 h-4 animate-spin" viewBox="0 0 24 24" fill="none">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+                      </svg>
+                      <span>Connecting WhatsApp...</span>
+                    </>
+                  ) : (
+                    <>
+                      <WhatsAppIcon className="w-4 h-4 text-emerald-950" />
+                      <span>Send Lead to WhatsApp (+91 96180 04530)</span>
+                      <ArrowRight className="w-4 h-4" />
+                    </>
+                  )}
                 </button>
               </div>
             </form>

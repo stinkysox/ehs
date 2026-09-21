@@ -12,8 +12,9 @@
 export const siteConfig = {
   brand: {
     name: "EHS PRO SERVICES",
-    tagline: "Protecting Environment and Enduring Health and Safety",
-    shortDescription: "Industrial EHS compliance, turnkey fire safety engineering, water treatment plant engineering, and certified environmental laboratory testing.",
+    tagline: "Protecting Environment. Ensuring Health & Safety.",
+    shortDescription: "Industrial EHS compliance, turnkey fire safety engineering, water treatment plant engineering, and certified environmental laboratory testing — serving factories across Andhra Pradesh.",
+    gstin: "37CDQPJ6561C1ZB",
   },
   
   navLinks: [
@@ -22,14 +23,17 @@ export const siteConfig = {
     { label: "PCB Compliance", href: "/pcb-compliance" },
     { label: "Fire & PESO", href: "/fire-protection" },
     { label: "Water Engineering", href: "/water-engineering" },
+    { label: "Book Consultation", href: "/book-consultation" },
   ],
 
   contact: {
-    email: "compliance@ehsproservices.com",
-    phone: "+91 98765 43210",
-    altPhone: "+91 11 2345 6789",
-    address: "Plot 42, Industrial Development Area, Phase-II, Manufacturing Corridor",
-    cityStateZip: "Gurugram, Haryana - 122050, India",
+    email: "ehsproservices23@gmail.com",
+    phone: "+91 96180 04530",
+    altPhone: "+91 96032 90270",
+    whatsapp: "919618004530",
+    whatsappDisplay: "+91 96180 04530",
+    address: "Near Sub Registrar Office, Amaravathi(P)",
+    cityStateZip: "Andhra Pradesh - 522020, India",
     workingHours: "Mon - Sat: 08:30 AM - 07:00 PM",
     emergencySupport: "24/7 Rapid Response for Statutory Audits & Inspections",
   },
@@ -532,7 +536,7 @@ export const whyChooseUsContent = {
  * ==============================================================================
  */
 export const footerContent = {
-  tagline: "Protecting Environment and Enduring Health and Safety",
+  tagline: "Protecting Environment. Ensuring Health & Safety.",
   missionStatement: "Empowering Indian industrial manufacturers and processing plants with turnkey environmental compliance, structural fire engineering, wastewater purification, and analytical laboratory accuracy.",
   quickLinks: [
     { label: "Environmental Lab Testing", href: "/lab-testing" },
@@ -540,7 +544,7 @@ export const footerContent = {
     { label: "Fire Protection & PESO NOC", href: "/fire-protection" },
     { label: "ETP & STP Water Engineering", href: "/water-engineering" },
     { label: "Why Choose Us", href: "/" },
-    { label: "Request a Callback", href: "/" },
+    { label: "Request a Free Consultation", href: "/book-consultation" },
   ],
   legalLinks: [
     { label: "Privacy Policy", href: "/" },

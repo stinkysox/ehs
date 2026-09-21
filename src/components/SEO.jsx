@@ -6,7 +6,7 @@ export default function SEO({ title, description, path = '/' }) {
   const fullTitle = title ? `${title} | ${siteConfig.brand.name}` : `${siteConfig.brand.name} | Industrial EHS Compliance & Engineering`;
   const defaultDesc = siteConfig.brand.shortDescription;
   const metaDescription = description || defaultDesc;
-  const url = `https://www.ehsproservices.com${path}`; // Using a placeholder domain
+  const url = `https://www.ehsproservices.in${path}`; // Update with live domain when available
 
   return (
     <Helmet>

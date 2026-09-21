@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { waterEngineeringContent, siteImages } from "../data/content";
 import { 
   Droplet, 
@@ -138,13 +139,13 @@ export default function WaterEngineering() {
 
               {/* Card Footer */}
               <div className="px-6 py-4 bg-slate-50 border-t border-slate-100">
-                <a
-                  href="#callback-form"
+                <Link
+                  to="/book-consultation?service=water"
                   className="w-full inline-flex items-center justify-between text-xs font-bold text-primary group-hover:text-accent transition-colors"
                 >
                   <span>Request Engineering Proposal</span>
                   <ArrowRight className="w-4 h-4 text-accent group-hover:translate-x-1 transition-transform" />
-                </a>
+                </Link>
               </div>
             </div>
           ))}

@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { siteConfig } from "../data/content";
-import { Shield, Menu, X, Phone, ArrowRight } from "lucide-react";
+import { Menu, X, Phone, ArrowRight } from "lucide-react";
+import logoImg from "../assets/logo.jpeg";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -55,13 +56,6 @@ export default function Navbar() {
     ? "bg-white/95 backdrop-blur-md shadow-soft-md border-b border-slate-200/90 py-3" 
     : "bg-transparent py-5";
 
-  const logoBgClass = isSolid
-    ? "bg-primary text-white shadow-soft-sm group-hover:bg-primary-light"
-    : "bg-white/10 text-white border border-white/20 group-hover:bg-accent group-hover:border-accent backdrop-blur-sm";
-
-  const brandTextClass = isSolid ? "text-primary-dark" : "text-white";
-  const brandSubClass = isSolid ? "text-slate-500" : "text-emerald-300/90";
-
   const phoneBtnClass = isSolid
     ? "text-slate-700 hover:text-primary hover:bg-slate-100"
     : "text-white hover:text-accent hover:bg-white/10 backdrop-blur-sm";
@@ -76,17 +70,23 @@ export default function Navbar() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
             {/* Logo */}
-            <Link to="/" className="flex items-center space-x-3 group focus:outline-none relative z-50" aria-label="EHS PRO SERVICES Home">
-              <div className={`w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-300 ${logoBgClass}`}>
-                <Shield className="w-5 h-5 text-accent group-hover:scale-110 transition-transform" />
-              </div>
-              <div className="flex flex-col">
-                <span className={`font-heading font-extrabold text-lg sm:text-xl tracking-tight leading-tight transition-colors duration-200 ${brandTextClass}`}>
-                  {siteConfig.brand.name}
-                </span>
-                <span className={`text-[10px] sm:text-[11px] font-medium tracking-wider uppercase transition-colors duration-200 ${brandSubClass}`}>
-                  Industrial Compliance
-                </span>
+            <Link
+              to="/"
+              className="flex items-center group focus:outline-none relative z-50"
+              aria-label="EHS PRO SERVICES Home"
+            >
+              <div
+                className={`transition-all duration-300 rounded-xl flex items-center ${
+                  isSolid
+                    ? "bg-white/80 p-1"
+                    : "bg-white/95 backdrop-blur-md px-2.5 py-1 shadow-md shadow-black/20 border border-white/50 ring-1 ring-black/5"
+                }`}
+              >
+                <img
+                  src={logoImg}
+                  alt="EHS PRO SERVICES"
+                  className="h-9 sm:h-11 w-auto object-contain transition-transform duration-300 group-hover:scale-[1.02]"
+                />
               </div>
             </Link>
 
@@ -94,17 +94,27 @@ export default function Navbar() {
             <div className="flex items-center space-x-4 relative z-50">
               {/* Desktop Navigation Links */}
               <nav className="hidden lg:flex items-center space-x-7 mr-2" aria-label="Main Navigation">
-                {siteConfig.navLinks.map((link) => (
-                  <Link
-                    key={link.label}
-                    to={link.href}
-                    className={`text-sm font-semibold transition-colors hover:text-accent focus:outline-none ${
-                      isSolid ? "text-slate-700" : "text-slate-200 hover:text-white"
-                    }`}
-                  >
-                    {link.label}
-                  </Link>
-                ))}
+                {siteConfig.navLinks.map((link) =>
+                  link.href === "/book-consultation" ? (
+                    <Link
+                      key={link.label}
+                      to={link.href}
+                      className="inline-flex items-center gap-1.5 bg-accent hover:bg-accent-hover text-slate-950 text-sm font-bold px-4 py-2 rounded-lg transition-all duration-200"
+                    >
+                      {link.label}
+                    </Link>
+                  ) : (
+                    <Link
+                      key={link.label}
+                      to={link.href}
+                      className={`text-sm font-semibold transition-colors hover:text-accent focus:outline-none ${
+                        isSolid ? "text-slate-700" : "text-slate-200 hover:text-white"
+                      }`}
+                    >
+                      {link.label}
+                    </Link>
+                  )
+                )}
               </nav>
 
               <a href={`tel:${siteConfig.contact.phone.replace(/\s+/g, "")}`} className={`hidden sm:flex items-center space-x-2 text-sm font-semibold px-4 py-2 rounded-lg transition-colors ${phoneBtnClass}`}>
@@ -149,25 +159,20 @@ export default function Navbar() {
 
               <motion.div custom={siteConfig.navLinks.length} variants={linkVariants} initial="closed" animate="open" exit="closed" className="pt-10 w-full">
                 <div className="bg-slate-50 border border-slate-200 rounded-3xl p-6 sm:p-8 text-center shadow-soft-xl max-w-sm mx-auto">
-                  <div className="text-sm font-bold uppercase tracking-wider text-slate-500 mb-2">Emergency Response</div>
-                  <a href={`tel:${siteConfig.contact.phone.replace(/\s+/g, "")}`} className="text-2xl sm:text-3xl font-heading font-extrabold text-primary hover:text-accent transition-colors block mb-6">
-                    {siteConfig.contact.phone}
-                  </a>
+                  <div className="text-sm font-bold uppercase tracking-wider text-slate-500 mb-2">Direct Helpline</div>
+                  <div className="flex flex-col sm:flex-row items-center justify-center gap-2 mb-6">
+                    <a href={`tel:${siteConfig.contact.phone.replace(/\s+/g, "")}`} className="text-xl sm:text-2xl font-heading font-extrabold text-primary hover:text-accent transition-colors block">
+                      {siteConfig.contact.phone}
+                    </a>
+                    <span className="hidden sm:block text-slate-400">·</span>
+                    <a href={`tel:${siteConfig.contact.altPhone.replace(/\s+/g, "")}`} className="text-xl sm:text-2xl font-heading font-extrabold text-primary hover:text-accent transition-colors block">
+                      {siteConfig.contact.altPhone}
+                    </a>
+                  </div>
                   <Link
-                    to="/"
-                    onClick={() => {
-                      setIsMenuOpen(false);
-                      setTimeout(() => {
-                        const target = document.querySelector("#callback-form");
-                        if (target) {
-                          const navOffset = 80;
-                          const elementPosition = target.getBoundingClientRect().top;
-                          const offsetPosition = elementPosition + window.pageYOffset - navOffset;
-                          window.scrollTo({ top: offsetPosition, behavior: "smooth" });
-                        }
-                      }, 100);
-                    }}
-                    className="inline-flex items-center justify-center space-x-2 bg-accent hover:bg-accent-hover text-white text-base font-bold w-full py-4 rounded-xl shadow-lg transition-colors"
+                    to="/book-consultation"
+                    onClick={() => setIsMenuOpen(false)}
+                    className="inline-flex items-center justify-center space-x-2 bg-accent hover:bg-accent-hover text-slate-950 text-base font-bold w-full py-4 rounded-xl shadow-lg transition-colors"
                   >
                     <span>Book Consultation Now</span>
                     <ArrowRight className="w-5 h-5" />

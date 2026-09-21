@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { labServicesContent, siteImages } from "../data/content";
 import { 
   CheckCircle2, 
@@ -148,13 +149,16 @@ export default function LabServices() {
                 </div>
 
                 {/* Card Deliverable Footer */}
-                <div className="px-6 py-4 bg-slate-50 border-t border-slate-100 flex items-center justify-between">
+                <Link
+                  to="/book-consultation?service=lab"
+                  className="px-6 py-4 bg-slate-50 border-t border-slate-100 flex items-center justify-between hover:bg-slate-100 transition-colors"
+                >
                   <div>
                     <div className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Deliverable</div>
                     <div className="text-xs font-semibold text-slate-800 line-clamp-1">{service.deliverable}</div>
                   </div>
                   <ArrowUpRight className="w-4 h-4 text-accent group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform flex-shrink-0 ml-2" />
-                </div>
+                </Link>
               </div>
             );
           })}
@@ -179,13 +183,13 @@ export default function LabServices() {
             </div>
 
             <div className="pt-6">
-              <a
-                href="#callback-form"
+              <Link
+                to="/book-consultation?service=lab"
                 className="w-full inline-flex items-center justify-center space-x-2 bg-accent hover:bg-accent-hover text-slate-950 text-xs sm:text-sm font-bold py-3.5 px-5 rounded-xl shadow-soft-md transition-all"
               >
                 <span>Book On-Site Lab Sampling</span>
                 <ArrowUpRight className="w-4 h-4" />
-              </a>
+              </Link>
             </div>
           </div>
         </div>

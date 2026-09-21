@@ -1,7 +1,8 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { siteConfig, footerContent } from "../data/content";
+import logoImg from "../assets/logo.jpeg";
 import {
-  Shield,
   Mail,
   Phone,
   MapPin,
@@ -133,22 +134,15 @@ export default function Footer() {
 
           {/* Brand block */}
           <div className="lg:col-span-5 space-y-5">
-            <div className="flex items-center space-x-3">
-              <div
-                className="w-11 h-11 rounded-xl border border-emerald-600/40 flex items-center justify-center shadow-lg"
-                style={{ background: "linear-gradient(135deg, #065f46, #064e3b)" }}
-              >
-                <Shield className="w-5 h-5 text-white" />
+            <Link to="/" className="inline-block group focus:outline-none" aria-label="EHS PRO SERVICES Home">
+              <div className="bg-white px-3.5 py-2 rounded-2xl inline-flex items-center shadow-xl shadow-black/30 border border-white/20 transition-all duration-300 group-hover:scale-[1.02] group-hover:shadow-emerald-500/10">
+                <img
+                  src={logoImg}
+                  alt="EHS PRO SERVICES - Industrial EHS Compliance & Engineering"
+                  className="h-12 sm:h-14 w-auto object-contain"
+                />
               </div>
-              <div>
-                <div className="font-heading font-extrabold text-xl text-white tracking-tight leading-tight">
-                  {siteConfig.brand.name}
-                </div>
-                <div className="text-[11px] text-emerald-400/80 font-medium tracking-wide uppercase mt-0.5">
-                  Industrial EHS Compliance &amp; Engineering
-                </div>
-              </div>
-            </div>
+            </Link>
 
             <p className="text-sm text-slate-400 leading-relaxed max-w-sm">
               {footerContent.missionStatement}
@@ -237,7 +231,7 @@ export default function Footer() {
               <div className="flex items-start space-x-3 rounded-xl bg-slate-900/60 border border-slate-800 px-4 py-3 hover:border-slate-700 transition-colors">
                 <MapPin className="w-4 h-4 text-emerald-500 flex-shrink-0 mt-0.5" />
                 <div>
-                  <div className="text-[10px] uppercase font-bold tracking-wider text-slate-500 mb-0.5">Plant Office</div>
+                  <div className="text-[10px] uppercase font-bold tracking-wider text-slate-500 mb-0.5">Registered Office</div>
                   <p className="text-sm text-slate-300 leading-snug">
                     {siteConfig.contact.address},<br />
                     {siteConfig.contact.cityStateZip}
@@ -256,7 +250,11 @@ export default function Footer() {
 
         {/* ── Bottom strip ── */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-600">
-          <span>© {currentYear} {siteConfig.brand.name}. All rights reserved.</span>
+          <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4">
+            <span>© {currentYear} {siteConfig.brand.name}. All rights reserved.</span>
+            <span className="hidden sm:block text-slate-700">·</span>
+            <span className="text-slate-700 font-mono tracking-wider">GSTIN: <span className="text-slate-500">{siteConfig.brand.gstin}</span></span>
+          </div>
 
           <div className="flex items-center gap-5">
             {footerContent.legalLinks.map((item) => (

@@ -2,7 +2,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { siteConfig } from '../data/content';
 
-const DEFAULT_OG_IMAGE = 'https://www.ehsproservices.in/images/hero-plant.jpg';
+const DEFAULT_OG_IMAGE = 'https://www.ehsproservices.in/logo.jpeg';
 
 export default function SEO({ title, description, path = '/', image }) {
   const fullTitle = title ? `${title} | ${siteConfig.brand.name}` : `${siteConfig.brand.name} | Industrial EHS Compliance & Engineering`;

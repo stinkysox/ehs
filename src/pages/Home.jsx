@@ -13,10 +13,14 @@ export default function Home() {
       exit={{ opacity: 0 }}
       transition={{ duration: 0.5 }}
     >
-      <SEO title="Home" />
+      <SEO
+        path="/"
+        description="EHS PRO SERVICES — Andhra Pradesh's leading industrial EHS compliance firm. PCB CFE/CFO consents, Fire NOC & PESO approvals, ETP/STP plant engineering, and NABL/CPCB certified environmental lab testing. 15+ years | 650+ plants. Call +91 96180 04530."
+      />
       <Hero />
       <CallbackForm />
       <WhyChooseUs />
     </motion.div>
   );
 }
+

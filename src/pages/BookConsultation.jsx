@@ -116,6 +116,7 @@ export default function BookConsultation() {
   const [isSuccess, setIsSuccess] = useState(false);
   const [waLink, setWaLink] = useState("");
   const [submittedLead, setSubmittedLead] = useState(null);
+  const [termsAccepted, setTermsAccepted] = useState(false);
 
   useEffect(() => {
     if (preService && SERVICE_MAP[preService]) {
@@ -151,6 +152,7 @@ export default function BookConsultation() {
     else if (!/^\+?[0-9]{10,14}$/.test(ph)) e.phone = "Enter a valid 10-digit phone number";
     if (formData.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) e.email = "Enter a valid email address";
     if (formData.selectedServices.length === 0) e.services = "Please select at least one service";
+    if (!termsAccepted) e.terms = "Please accept the Terms & Privacy Policy to proceed";
     setErrors(e);
     return Object.keys(e).length === 0;
   };
@@ -222,6 +224,7 @@ export default function BookConsultation() {
     setIsSuccess(false);
     setWaLink("");
     setSubmittedLead(null);
+    setTermsAccepted(false);
   };
 
   return (
@@ -500,36 +503,39 @@ export default function BookConsultation() {
 
                     <div className="my-6 border-t border-slate-200" />
 
-                    {/* Direct Contact */}
-                    <div className="bg-white rounded-2xl border border-slate-200 p-4 mb-6 space-y-2.5">
-                      <div className="text-xs font-bold uppercase tracking-wider text-slate-500">Or Reach Us Directly</div>
-                      <a href={`tel:${siteConfig.contact.phone.replace(/\s+/g, "")}`} className="flex items-center gap-2.5 text-sm text-slate-700 hover:text-primary transition-colors">
-                        <Phone className="w-4 h-4 text-emerald-500 flex-shrink-0" />
-                        {siteConfig.contact.phone}
-                      </a>
-                      <a
-                        href="https://wa.me/919618004530?text=Hello%20EHS%20PRO%20SERVICES%2C%20I%20would%20like%20to%20inquire%20about%20your%20compliance%20services."
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2.5 text-sm text-slate-700 hover:text-emerald-700 transition-colors"
-                      >
-                        <WhatsAppIcon className="w-4 h-4 text-[#25D366] flex-shrink-0" />
-                        <span>WhatsApp: +91 96180 04530</span>
-                      </a>
-                      <a href={`tel:${siteConfig.contact.altPhone.replace(/\s+/g, "")}`} className="flex items-center gap-2.5 text-sm text-slate-700 hover:text-primary transition-colors">
-                        <Phone className="w-4 h-4 text-emerald-500 flex-shrink-0" />
-                        {siteConfig.contact.altPhone}
-                      </a>
-                      <a href={`mailto:${siteConfig.contact.email}`} className="flex items-center gap-2.5 text-sm text-slate-700 hover:text-primary transition-colors truncate">
-                        <Mail className="w-4 h-4 text-emerald-500 flex-shrink-0" />
-                        {siteConfig.contact.email}
-                      </a>
+                    {/* Terms & Privacy Consent */}
+                    <div className="mb-4 space-y-2">
+                      <div className="flex items-start gap-3">
+                        <input
+                          id="book-terms"
+                          type="checkbox"
+                          checked={termsAccepted}
+                          onChange={(e) => {
+                            setTermsAccepted(e.target.checked);
+                            if (errors.terms) setErrors((prev) => { const u = { ...prev }; delete u.terms; return u; });
+                          }}
+                          className="mt-0.5 h-4 w-4 rounded border-slate-300 text-primary accent-primary cursor-pointer flex-shrink-0"
+                        />
+                        <label htmlFor="book-terms" className="text-[11px] text-slate-600 leading-relaxed cursor-pointer">
+                          I agree to the{" "}
+                          <Link to="/terms" target="_blank" rel="noopener noreferrer" className="text-emerald-700 hover:underline font-semibold">Terms of Service</Link>
+                          {" "}&amp;{" "}
+                          <Link to="/privacy-policy" target="_blank" rel="noopener noreferrer" className="text-emerald-700 hover:underline font-semibold">Privacy Policy</Link>
+                          . I consent to my inquiry details being routed to EHS PRO SERVICES via WhatsApp.
+                        </label>
+                      </div>
+                      {errors.terms && (
+                        <p className="mt-1 flex items-center gap-1.5 text-xs text-red-500">
+                          <AlertCircle className="w-3.5 h-3.5 flex-shrink-0" />
+                          {errors.terms}
+                        </p>
+                      )}
                     </div>
 
                     {/* Submit */}
                     <button
                       type="submit"
-                      disabled={isSubmitting}
+                      disabled={isSubmitting || !termsAccepted}
                       id="submit-consultation-btn"
                       className="w-full inline-flex items-center justify-center gap-2.5 bg-accent hover:bg-accent-hover disabled:opacity-60 disabled:cursor-not-allowed text-slate-950 text-base font-bold py-4 px-6 rounded-xl shadow-md transition-all duration-200 active:scale-[0.98]"
                     >

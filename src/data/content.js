@@ -56,7 +56,7 @@ export const siteConfig = {
 export const siteImages = {
   // Hero Background: Twilight heavy petrochemical manufacturing plant with lit piping
   heroBackground: {
-    url: "https://images.unsplash.com/photo-1516937941344-00b4e0337589?auto=format&fit=crop&w=1920&q=80",
+    url: "/images/hero-plant.jpg",
     alt: "Heavy manufacturing refinery with industrial chemical piping and processing towers at dusk",
     caption: "Heavy Industrial Turnkey Infrastructure",
   },
@@ -64,32 +64,32 @@ export const siteImages = {
   // Environmental Lab Cards Photography
   lab: {
     hero: {
-      url: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1200&q=80",
+      url: "/images/lab-hero.jpg",
       alt: "Certified analytical laboratory testing equipment with titration glassware",
       caption: "ISO/IEC 17025 Accredited Laboratory Facility",
     },
     drinkingWater: {
-      url: "https://images.unsplash.com/photo-1560582861-45078880e48e?auto=format&fit=crop&w=800&q=80",
+      url: "/images/lab-water.jpg",
       alt: "Laboratory beaker analyzing crystal clear potable drinking water",
       caption: "Potable Water Quality Testing (IS 10500)",
     },
     effluent: {
-      url: "https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2?auto=format&fit=crop&w=800&q=80",
+      url: "/images/lab-effluent.jpg",
       alt: "Industrial wastewater chemical assay and turbidity testing vials",
       caption: "BOD/COD Heavy Metal Effluent Testing",
     },
     airQuality: {
-      url: "https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?auto=format&fit=crop&w=800&q=80",
+      url: "/images/lab-air.jpg",
       alt: "Industrial factory chimney stack releasing flue gas into sky during emission audit",
       caption: "Isokinetic Stack & Ambient Air Sampling",
     },
     noiseSurvey: {
-      url: "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=800&q=80",
+      url: "/images/lab-noise.jpg",
       alt: "Industrial manufacturing plant floor with high-decibel motors and production machinery",
       caption: "Factory Act Decibel Mapping & Noise Surveys",
     },
     soilSludge: {
-      url: "https://images.unsplash.com/photo-1464226184884-fa280b87c399?auto=format&fit=crop&w=800&q=80",
+      url: "/images/lab-soil.jpg",
       alt: "Soil testing sample petri dish and earth sediment analysis in lab",
       caption: "ETP Sludge Categorization & TCLP Analysis",
     },
@@ -98,17 +98,17 @@ export const siteImages = {
   // Pollution Control Board Cards Photography
   pcb: {
     cfe: {
-      url: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80",
+      url: "/images/pcb-cfe.jpg",
       alt: "Greenfield industrial construction site and structural steel framework",
       caption: "Consent for Establishment (CFE)",
     },
     cfo: {
-      url: "https://images.unsplash.com/photo-1513828583688-c52646db42da?auto=format&fit=crop&w=800&q=80",
+      url: "/images/pcb-cfo.jpg",
       alt: "Active manufacturing facility operational line with robotic and automated machinery",
       caption: "Consent for Operation (CFO)",
     },
     annualCompliance: {
-      url: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80",
+      url: "/images/pcb-audit.jpg",
       alt: "Environmental compliance engineer with digital tablet auditing factory compliance registers",
       caption: "Annual Environmental Audits & Form-V Filings",
     },
@@ -117,22 +117,22 @@ export const siteImages = {
   // Fire Protection & PESO Cards Photography
   fire: {
     hydrantGrid: {
-      url: "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?auto=format&fit=crop&w=800&q=80",
+      url: "/images/fire-hydrant.jpg",
       alt: "Heavy duty red industrial fire hydrant with high-pressure pressurized valve manifold",
       caption: "Turnkey Fire Hydrant Systems & Ring Mains",
     },
     alarmsPanels: {
-      url: "https://images.unsplash.com/photo-1518640467707-6811f4a6ab73?auto=format&fit=crop&w=800&q=80",
+      url: "/images/fire-alarm.jpg",
       alt: "Addressable industrial safety control console and electrical emergency panels",
       caption: "Addressable Fire Alarm & Smoke Detection",
     },
     pesoStorage: {
-      url: "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=800&q=80",
+      url: "/images/fire-peso.jpg",
       alt: "Industrial bulk petroleum and chemical fuel storage vessels with safety valves",
       caption: "PESO Statutory Approvals & Fuel Clearances",
     },
     equipment: {
-      url: "https://images.unsplash.com/photo-1599839575945-a9e5af0c3fa5?auto=format&fit=crop&w=800&q=80",
+      url: "/images/fire-equipment.jpg",
       alt: "Industrial fire safety extinguishers, pressure regulators, and sprinkler risers",
       caption: "Suppression Networks & Code Auditing",
     },
@@ -141,17 +141,17 @@ export const siteImages = {
   // Water Engineering (ETP / STP) Photography
   water: {
     etpPlant: {
-      url: "https://images.unsplash.com/photo-1574482620811-1aa16ffe3c82?auto=format&fit=crop&w=800&q=80",
+      url: "/images/water-etp.jpg",
       alt: "Effluent treatment plant circular aeration clarifier tank for manufacturing chemical waste",
       caption: "Industrial Effluent Treatment Plants (ETP)",
     },
     stpPlant: {
-      url: "https://images.unsplash.com/photo-1584982751601-97dcc096659c?auto=format&fit=crop&w=800&q=80",
+      url: "/images/water-stp.jpg",
       alt: "Clear treated water reservoir flowing from biological membrane bioreactor STP",
       caption: "Sewage Treatment Plants (STP) & Water Reuse",
     },
     lifecycle: {
-      url: "https://images.unsplash.com/photo-1581092162384-8987c1d64718?auto=format&fit=crop&w=800&q=80",
+      url: "/images/water-pumps.jpg",
       alt: "Industrial high-capacity stainless steel centrifugal pumps and valve piping gallery",
       caption: "Comprehensive Turnkey Supply, Setup & O&M",
     },
@@ -160,17 +160,17 @@ export const siteImages = {
   // Why Choose Us Photography
   whyUs: {
     team: {
-      url: "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=800&q=80",
+      url: "/images/why-team.jpg",
       alt: "Senior industrial engineering consultants reviewing technical plant blueprints",
       caption: "Single-Window Engineering Accountability",
     },
     standards: {
-      url: "https://images.unsplash.com/photo-1590247813693-5541d1c609fd?auto=format&fit=crop&w=800&q=80",
+      url: "/images/why-standards.jpg",
       alt: "Precision pipe fabrication and industrial mechanical engineering installation",
       caption: "Absolute Code Mastery & NBC Alignment",
     },
     heavyPlant: {
-      url: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80",
+      url: "/images/why-plant.jpg",
       alt: "Heavy industrial manufacturing plant with complex piping and machinery",
       caption: "Elite Engineering Standards",
     },
@@ -178,7 +178,7 @@ export const siteImages = {
 
   // Alias for backward compatibility
   waterClarifier: {
-    url: "https://images.unsplash.com/photo-1574482620811-1aa16ffe3c82?auto=format&fit=crop&w=800&q=80",
+    url: "/images/water-etp.jpg",
     alt: "Effluent treatment plant circular aeration clarifier tank for manufacturing chemical waste",
     caption: "Industrial Effluent Treatment Plants (ETP)",
   },
@@ -547,8 +547,8 @@ export const footerContent = {
     { label: "Request a Free Consultation", href: "/book-consultation" },
   ],
   legalLinks: [
-    { label: "Privacy Policy", href: "/" },
-    { label: "Terms of Service", href: "/" },
-    { label: "Statutory Disclaimer", href: "/" },
+    { label: "Privacy Policy", href: "/privacy-policy" },
+    { label: "Terms of Service", href: "/terms" },
+    { label: "Statutory Disclaimer", href: "/disclaimer" },
   ],
 };

@@ -13,6 +13,9 @@ import PollutionControl from "./pages/PollutionControl";
 import FireProtection from "./pages/FireProtection";
 import WaterEngineering from "./pages/WaterEngineering";
 import BookConsultation from "./pages/BookConsultation";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import TermsOfService from "./pages/TermsOfService";
+import StatutoryDisclaimer from "./pages/StatutoryDisclaimer";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -33,6 +36,9 @@ function AnimatedRoutes() {
         <Route path="/fire-protection" element={<FireProtection />} />
         <Route path="/water-engineering" element={<WaterEngineering />} />
         <Route path="/book-consultation" element={<BookConsultation />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="/terms" element={<TermsOfService />} />
+        <Route path="/disclaimer" element={<StatutoryDisclaimer />} />
       </Routes>
     </AnimatePresence>
   );

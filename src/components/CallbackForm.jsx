@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { callbackFormContent } from "../data/content";
 import { 
   PhoneCall, 
@@ -37,6 +38,7 @@ export default function CallbackForm() {
   const [isSuccess, setIsSuccess] = useState(false);
   const [submittedData, setSubmittedData] = useState(null);
   const [waLink, setWaLink] = useState("");
+  const [termsAccepted, setTermsAccepted] = useState(false);
 
   const validateForm = () => {
     const newErrors = {};
@@ -60,6 +62,10 @@ export default function CallbackForm() {
 
     if (formData.selectedServices.length === 0) {
       newErrors.services = "Please select at least one service needed";
+    }
+
+    if (!termsAccepted) {
+      newErrors.terms = "Please accept the Terms & Privacy Policy to proceed";
     }
 
     setErrors(newErrors);
@@ -145,6 +151,7 @@ export default function CallbackForm() {
     });
     setErrors({});
     setWaLink("");
+    setTermsAccepted(false);
   };
 
   return (
@@ -402,34 +409,63 @@ export default function CallbackForm() {
                 </div>
               </div>
 
-              {/* Submit & Disclaimer Strip */}
-              <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-4">
-                <p className="text-[11px] text-slate-500 flex items-center space-x-2 order-2 sm:order-1">
-                  <ShieldAlert className="w-4 h-4 text-emerald-600 flex-shrink-0" />
-                  <span>Lead routed directly to +91 96180 04530 · NDA protected</span>
-                </p>
+              {/* Terms & Privacy Consent + Submit Strip */}
+              <div className="pt-2 space-y-3">
+                {/* Consent Checkbox */}
+                <div className="flex items-start gap-3">
+                  <input
+                    id="callback-terms"
+                    type="checkbox"
+                    checked={termsAccepted}
+                    onChange={(e) => {
+                      setTermsAccepted(e.target.checked);
+                      if (errors.terms) setErrors((prev) => { const u = { ...prev }; delete u.terms; return u; });
+                    }}
+                    className="mt-0.5 h-4 w-4 rounded border-slate-300 text-primary accent-primary cursor-pointer flex-shrink-0"
+                  />
+                  <label htmlFor="callback-terms" className="text-[11px] text-slate-600 leading-relaxed cursor-pointer">
+                    I agree to the{" "}
+                    <Link to="/terms" target="_blank" rel="noopener noreferrer" className="text-emerald-700 hover:underline font-semibold">Terms of Service</Link>
+                    {" "}&amp;{" "}
+                    <Link to="/privacy-policy" target="_blank" rel="noopener noreferrer" className="text-emerald-700 hover:underline font-semibold">Privacy Policy</Link>
+                    . I consent to my inquiry details being routed to EHS PRO SERVICES via WhatsApp.
+                  </label>
+                </div>
+                {errors.terms && (
+                  <p className="text-xs text-rose-600 flex items-center gap-1.5">
+                    <AlertCircle className="w-3.5 h-3.5 flex-shrink-0" />
+                    {errors.terms}
+                  </p>
+                )}
 
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="w-full sm:w-auto inline-flex items-center justify-center space-x-2.5 bg-accent hover:bg-accent-hover text-slate-950 text-sm font-bold px-8 py-3.5 rounded-xl shadow-soft-md hover:shadow-accent-glow transition-all duration-200 transform hover:-translate-y-0.5 disabled:opacity-75 disabled:cursor-not-allowed order-1 sm:order-2"
-                >
-                  {isSubmitting ? (
-                    <>
-                      <svg className="w-4 h-4 animate-spin" viewBox="0 0 24 24" fill="none">
-                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
-                      </svg>
-                      <span>Connecting WhatsApp...</span>
-                    </>
-                  ) : (
-                    <>
-                      <WhatsAppIcon className="w-4 h-4 text-emerald-950" />
-                      <span>Send Lead to WhatsApp (+91 96180 04530)</span>
-                      <ArrowRight className="w-4 h-4" />
-                    </>
-                  )}
-                </button>
+                <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+                  <p className="text-[11px] text-slate-500 flex items-center space-x-2 order-2 sm:order-1">
+                    <ShieldAlert className="w-4 h-4 text-emerald-600 flex-shrink-0" />
+                    <span>Lead routed directly to +91 96180 04530 · NDA protected</span>
+                  </p>
+
+                  <button
+                    type="submit"
+                    disabled={isSubmitting || !termsAccepted}
+                    className="w-full sm:w-auto inline-flex items-center justify-center space-x-2.5 bg-accent hover:bg-accent-hover text-slate-950 text-sm font-bold px-8 py-3.5 rounded-xl shadow-soft-md hover:shadow-accent-glow transition-all duration-200 transform hover:-translate-y-0.5 disabled:opacity-75 disabled:cursor-not-allowed order-1 sm:order-2"
+                  >
+                    {isSubmitting ? (
+                      <>
+                        <svg className="w-4 h-4 animate-spin" viewBox="0 0 24 24" fill="none">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+                        </svg>
+                        <span>Connecting WhatsApp...</span>
+                      </>
+                    ) : (
+                      <>
+                        <WhatsAppIcon className="w-4 h-4 text-emerald-950" />
+                        <span>Send Lead to WhatsApp (+91 96180 04530)</span>
+                        <ArrowRight className="w-4 h-4" />
+                      </>
+                    )}
+                  </button>
+                </div>
               </div>
             </form>
           )}

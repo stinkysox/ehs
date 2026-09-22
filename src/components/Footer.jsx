@@ -258,13 +258,13 @@ export default function Footer() {
 
           <div className="flex items-center gap-5">
             {footerContent.legalLinks.map((item) => (
-              <a
+              <Link
                 key={item.label}
-                href={item.href}
+                to={item.href}
                 className="hover:text-slate-400 transition-colors"
               >
                 {item.label}
-              </a>
+              </Link>
             ))}
             <button
               onClick={(e) => scrollTo(e, "#top")}

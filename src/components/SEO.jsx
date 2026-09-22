@@ -2,11 +2,14 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { siteConfig } from '../data/content';
 
-export default function SEO({ title, description, path = '/' }) {
+const DEFAULT_OG_IMAGE = 'https://www.ehsproservices.in/images/hero-plant.jpg';
+
+export default function SEO({ title, description, path = '/', image }) {
   const fullTitle = title ? `${title} | ${siteConfig.brand.name}` : `${siteConfig.brand.name} | Industrial EHS Compliance & Engineering`;
   const defaultDesc = siteConfig.brand.shortDescription;
   const metaDescription = description || defaultDesc;
-  const url = `https://www.ehsproservices.in${path}`; // Update with live domain when available
+  const url = `https://www.ehsproservices.in${path}`;
+  const ogImage = image || DEFAULT_OG_IMAGE;
 
   return (
     <Helmet>
@@ -18,12 +21,18 @@ export default function SEO({ title, description, path = '/' }) {
       <meta property="og:url" content={url} />
       <meta property="og:title" content={fullTitle} />
       <meta property="og:description" content={metaDescription} />
+      <meta property="og:image" content={ogImage} />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
+      <meta property="og:image:alt" content={`${fullTitle} - Industrial EHS Compliance`} />
+      <meta property="og:site_name" content="EHS PRO SERVICES" />
       
-      {/* Twitter */}
-      <meta property="twitter:card" content="summary_large_image" />
-      <meta property="twitter:url" content={url} />
-      <meta property="twitter:title" content={fullTitle} />
-      <meta property="twitter:description" content={metaDescription} />
+      {/* Twitter / X */}
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:url" content={url} />
+      <meta name="twitter:title" content={fullTitle} />
+      <meta name="twitter:description" content={metaDescription} />
+      <meta name="twitter:image" content={ogImage} />
       
       <link rel="canonical" href={url} />
     </Helmet>

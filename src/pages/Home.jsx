@@ -2,6 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import SEO from "../components/SEO";
 import Hero from "../components/Hero";
+import CertificateSection from "../components/CertificateSection";
 import CallbackForm from "../components/CallbackForm";
 import WhyChooseUs from "../components/WhyChooseUs";
 
@@ -18,6 +19,7 @@ export default function Home() {
         description="EHS PRO SERVICES — Andhra Pradesh's leading industrial EHS compliance firm. PCB CFE/CFO consents, Fire NOC & PESO approvals, ETP/STP plant engineering, and NABL/CPCB certified environmental lab testing. 15+ years | 650+ plants. Call +91 96180 04530."
       />
       <Hero />
+      <CertificateSection />
       <CallbackForm />
       <WhyChooseUs />
     </motion.div>
